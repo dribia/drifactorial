@@ -21,7 +21,7 @@ class Leave(BaseModel):
     half_day: Optional[str]
     leave_type_id: int
     employee_full_name: str
-    leave_type_name: str
+    leave_type_name: Optional[str]
 
 
 class Holiday(BaseModel):
