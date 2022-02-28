@@ -1,0 +1,680 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Python client for the Factorial API.">
+      
+      
+      
+      
+      <link rel="icon" href="../../img/dribia-favicon-120x120.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>Methods - drifactorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#get_account" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="drifactorial" class="md-header__button md-logo" aria-label="drifactorial" data-md-component="logo">
+      
+  <img src="../../img/logo_dribia_d_blanc.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            drifactorial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Methods
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/dribia/drifactorial" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    dribia/drifactorial
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="drifactorial" class="md-nav__button md-logo" aria-label="drifactorial" data-md-component="logo">
+      
+  <img src="../../img/logo_dribia_d_blanc.png" alt="logo">
+
+    </a>
+    drifactorial
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/dribia/drifactorial" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    dribia/drifactorial
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        drifactorial
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../install/" class="md-nav__link">
+        Install
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Usage
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Usage" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Usage
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authorization/" class="md-nav__link">
+        Authorization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Methods
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Methods
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#get_account" class="md-nav__link">
+    get_account
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get_employees" class="md-nav__link">
+    get_employees
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get_single_employee" class="md-nav__link">
+    get_single_employee
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get_shifts" class="md-nav__link">
+    get_shifts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clock_in" class="md-nav__link">
+    clock_in
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clock_out" class="md-nav__link">
+    clock_out
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get_leaves" class="md-nav__link">
+    get_leaves
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get_holidays" class="md-nav__link">
+    get_holidays
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get_daysoff" class="md-nav__link">
+    get_daysoff
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shift_restrictions/" class="md-nav__link">
+        Shift restrictions
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contribute/" class="md-nav__link">
+        Contribute
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#get_account" class="md-nav__link">
+    get_account
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get_employees" class="md-nav__link">
+    get_employees
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get_single_employee" class="md-nav__link">
+    get_single_employee
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get_shifts" class="md-nav__link">
+    get_shifts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clock_in" class="md-nav__link">
+    clock_in
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clock_out" class="md-nav__link">
+    clock_out
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get_leaves" class="md-nav__link">
+    get_leaves
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get_holidays" class="md-nav__link">
+    get_holidays
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get_daysoff" class="md-nav__link">
+    get_daysoff
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+  
+  
+    <div id="bsa-cpc"></div>
+  
+  
+                
+                
+                  <h1>Methods</h1>
+                
+                <div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Methods regarding authorization and access are described in the <a href="https://dribia.github.io/drifactorial/usage/authorization/">Authorization</a> page.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Most methods return custom <a href="https://pydantic-docs.helpmanual.io/">pydantic</a> objects. See <a href="https://github.com/dribia/drifactorial/blob/master/drifactorial/schemas.py"><code>schemas.py</code></a> for details.</p>
+</div>
+<h2 id="get_account">get_account<a class="headerlink" href="#get_account" title="Permanent link">🔗</a></h2>
+<p>Obtain information about the user's account.</p>
+<p>Returns an <code>Account</code> object.</p>
+<h2 id="get_employees">get_employees<a class="headerlink" href="#get_employees" title="Permanent link">🔗</a></h2>
+<p>Obtain information about <strong>all</strong> employees: previously terminated, currently active and future hirings, from <strong>all</strong> locations.</p>
+<p>Returns a list of <code>Employee</code> objects.</p>
+<h2 id="get_single_employee">get_single_employee<a class="headerlink" href="#get_single_employee" title="Permanent link">🔗</a></h2>
+<p>Obtain information about a single employee.</p>
+<p>Returns a single <code>Employee</code> object.</p>
+<h2 id="get_shifts">get_shifts<a class="headerlink" href="#get_shifts" title="Permanent link">🔗</a></h2>
+<p>Obtain information about <strong>all</strong> shifts: from <strong>all</strong> employees, from <strong>all</strong> times.</p>
+<p>Results can be filtered for a specific month with the arguments <code>year</code> and <code>month</code>. Both arguments must be provided in order
+to filter the results. Indicating only the <code>year</code> has no filtering effect.</p>
+<p>Results can also be filtered for a specific employee with the argument <code>employee_id</code>.</p>
+<p>Returns a list of <code>Shift</code> objects.</p>
+<h2 id="clock_in">clock_in<a class="headerlink" href="#clock_in" title="Permanent link">🔗</a></h2>
+<p>Create a new shift for a given <code>employee_id</code> with a given clock-in time <code>now</code>. </p>
+<p>Returns a single <code>Shift</code> object.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You can't create a new shift if there is still an open shift that hasn't been clocked-out (see <a href="https://dribia.github.io/drifactorial/usage/shift_restrictions/">Shift restrictions</a> for details).</p>
+</div>
+<h2 id="clock_out">clock_out<a class="headerlink" href="#clock_out" title="Permanent link">🔗</a></h2>
+<p>Update an open shift for a given <code>employee_id</code> with a given clock-out time <code>now</code>.</p>
+<p>Returns a single <code>Shift</code> object.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You can't clock-out a shift that hasn't been clocked-out (see <a href="https://dribia.github.io/drifactorial/usage/shift_restrictions/">Shift restrictions</a> for details).</p>
+</div>
+<h2 id="get_leaves">get_leaves<a class="headerlink" href="#get_leaves" title="Permanent link">🔗</a></h2>
+<p>Obtain information about <strong>all</strong> leaves: from <strong>all</strong> employees, from <strong>all</strong> times.</p>
+<p>Results can be filtered starting from a specific <code>start</code> date and/or ending at a specific <code>end</code> date (both dates are included in the filter, see note). </p>
+<p>Results can also be filtered for a specific employee with the argument <code>employee_id</code>.</p>
+<p>Returns a list of <code>Leave</code> objects.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Leaves that correspond to full days (<code>half_day=None</code>) have a <code>start_on</code> date and a <code>finish_on</code> date.</p>
+<p>Leaves that correspond to half days can be either mornings (<code>half_day="beggining_of_day"</code>, note the typo!) or afternoons (<code>half_day="end_of_day"</code>).</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When filtering with <code>start</code> and/or <code>end</code> dates, the filter returns all leaves that have 
+at least one day in the interval. For example, a leave that starts on <code>01/12/2021</code> and 
+finishes on <code>05/12/2021</code> will be included if we filter with <code>start=03/12/2021</code>. </p>
+</div>
+<h2 id="get_holidays">get_holidays<a class="headerlink" href="#get_holidays" title="Permanent link">🔗</a></h2>
+<p>Obtain information about <strong>all</strong> company holidays: from <strong>all</strong> locations, from <strong>all</strong> times.</p>
+<p>Results can be filtered starting from a specific <code>start</code> date and/or ending at a specific <code>end</code> date (both dates are included in the filter).</p>
+<p>Returns a list of <code>Holiday</code> objects.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>All holidays correspond to a single <code>date</code>.</p>
+<p>Holidays that correspond to half days can be either mornings (<code>half_day="beggining_of_day"</code>, note the typo!) or afternoons (<code>half_day="end_of_day"</code>).</p>
+</div>
+<h2 id="get_daysoff">get_daysoff<a class="headerlink" href="#get_daysoff" title="Permanent link">🔗</a></h2>
+<p>Obtain information about <strong>all</strong> days off (holidays and leaves) from a given <code>employee_id</code>. Only leaves with <code>approved=True</code> are included.</p>
+<p>Results can be filtered starting from a specific <code>start</code> date and/or ending at a specific <code>end</code> date (both dates are included in the filter).</p>
+<p>Results can also be filtered in order to include weekend days with <code>include_weekends=True</code>.</p>
+<p>Returns a tuple of 3 objects:</p>
+<ol>
+<li>A list of <code>date</code> objects corresponding to full days off. </li>
+<li>A list of <code>date</code> objects corresponding to mornings off.</li>
+<li>A list of <code>date</code> objects corresponding to afternoons off.</li>
+</ol>
+                
+              
+
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../authorization/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Authorization" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Authorization
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../shift_restrictions/" class="md-footer__link md-footer__link--next" aria-label="Next: Shift restrictions" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Shift restrictions
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>
