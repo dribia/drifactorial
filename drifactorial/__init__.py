@@ -307,8 +307,8 @@ class Factorial:
         return pydantic.parse_obj_as(Shift, response)
 
     @staticmethod
-    def authorize(
-        *, client_id: str, redirect_uri: str, scope: str = DEFAULT_SCOPE
+    def obtain_authorization_link(
+            *, client_id: str, redirect_uri: str, scope: str = DEFAULT_SCOPE
     ) -> str:
         """Obtain authorization link and return it as string."""
         if scope not in SCOPES:
@@ -319,14 +319,24 @@ class Factorial:
             "response_type=code",
             f"scope={scope}",
         ]
+        str_auth_url = "&".join(auth_url)
+        return str_auth_url
+
+    def authorize(
+        self, *, client_id: str, redirect_uri: str, scope: str = DEFAULT_SCOPE
+    ) -> None:
+        """Print authorization link."""
         text = [
             "Authorization required.",
             "Follow this link and store your authorization key:",
         ]
         str_text = " ".join(text)
-        str_auth_url = "&".join(auth_url)
+        str_auth_url = self.obtain_authorization_link(
+            client_id=client_id,
+            redirect_uri=redirect_uri,
+            scope=scope
+        )
         print(f"{str_text}\n{str_auth_url}")
-        return str_auth_url
 
     @staticmethod
     def _post_token(*, data: Dict[str, str]) -> Dict[str, Any]:
