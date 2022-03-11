@@ -309,8 +309,8 @@ class Factorial:
     @staticmethod
     def authorize(
         *, client_id: str, redirect_uri: str, scope: str = DEFAULT_SCOPE
-    ) -> None:
-        """Obtain authorization link."""
+    ) -> str:
+        """Obtain authorization link and return it as string."""
         if scope not in SCOPES:
             raise ValueError(f"Invalid scope. Options are: {', '.join(SCOPES)}.")
         auth_url = [
@@ -323,9 +323,10 @@ class Factorial:
             "Authorization required.",
             "Follow this link and store your authorization key:",
         ]
-        print(" ".join(text))
-        print("&".join(auth_url))
-        return None
+        str_text = " ".join(text)
+        str_auth_url = "&".join(auth_url)
+        print(f"{str_text}\n{str_auth_url}")
+        return str_auth_url
 
     @staticmethod
     def _post_token(*, data: Dict[str, str]) -> Dict[str, Any]:
