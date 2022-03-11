@@ -36,8 +36,7 @@ dummy_factorial.authorize(
     authorization_link = dummy_factorial.obtain_authorization_link(
         client_id=client_id, 
         redirect_uri=redirect_uri
-    )
-    
+    )    
     authorization_key = input(
         f"Copy your authorization code from the link:\n{authorization_link}"
     )
