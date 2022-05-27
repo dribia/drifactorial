@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "drifactorial"
-version = "0.3.3"
+version = "0.3.4"
 description = "Python client for the Factorial API."
 license = "MIT"
 authors = ["Dribia Data Research <opensource@dribia.com>"]
