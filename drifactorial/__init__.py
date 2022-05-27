@@ -244,7 +244,7 @@ class Factorial:
 
         # find valid end
         if employee.terminated_on is None:
-            aux_end = date.today()
+            aux_end = date.today() + timedelta(days=365 * 10)
         else:
             aux_end = employee.terminated_on
         if end is not None:
