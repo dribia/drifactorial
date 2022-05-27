@@ -1,4 +1,4 @@
-<p style="text-align: center; padding-bottom: 1rem;">
+x<p style="text-align: center; padding-bottom: 1rem;">
     <a href="https://dribia.github.io/drifactorial">
         <img 
             src="https://dribia.github.io/drifactorial/img/logo_dribia_blau_cropped.png" 
