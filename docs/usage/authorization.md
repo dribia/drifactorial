@@ -30,6 +30,19 @@ dummy_factorial.authorize(
 !!! success
     Keep this `authorization_key` nearby.
 
+!!! tip
+    This authorization link can also be used in a pipeline that stores the `authorization_key` in a variable using the Python's `input` method:
+    ```
+    authorization_link = dummy_factorial.obtain_authorization_link(
+        client_id=client_id, 
+        redirect_uri=redirect_uri
+    )    
+    authorization_key = input(
+        f"Copy your authorization code from the link:\n{authorization_link}"
+    )
+    print(f"Do something with the key: {authorization_key}")
+    ```
+
 ## Obtain your first access token
 Finally we can obtain our first access token.
 
