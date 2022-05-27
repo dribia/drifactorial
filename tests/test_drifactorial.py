@@ -373,6 +373,15 @@ def test_clock_out(mocker: MockerFixture):
 def test_authorize(capsys: CaptureFixture):
     """Assert authorize method."""
     factorial = Factorial(access_token=utils.random_lower_string())
+    auth_link = factorial.obtain_authorization_link(
+        client_id=utils.random_lower_string(), redirect_uri=utils.random_lower_string()
+    )
+    assert auth_link.startswith("https://")
+    params = auth_link.split("&")
+    assert len(params) == 4
+    for param in ["client_id", "redirect_uri", "response_type", "scope"]:
+        assert param in auth_link
+
     factorial.authorize(
         client_id=utils.random_lower_string(), redirect_uri=utils.random_lower_string()
     )
