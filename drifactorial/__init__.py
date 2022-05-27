@@ -308,7 +308,7 @@ class Factorial:
 
     @staticmethod
     def obtain_authorization_link(
-            *, client_id: str, redirect_uri: str, scope: str = DEFAULT_SCOPE
+        *, client_id: str, redirect_uri: str, scope: str = DEFAULT_SCOPE
     ) -> str:
         """Obtain authorization link and return it as string."""
         if scope not in SCOPES:
@@ -332,9 +332,7 @@ class Factorial:
         ]
         str_text = " ".join(text)
         str_auth_url = self.obtain_authorization_link(
-            client_id=client_id,
-            redirect_uri=redirect_uri,
-            scope=scope
+            client_id=client_id, redirect_uri=redirect_uri, scope=scope
         )
         print(f"{str_text}\n{str_auth_url}")
 
