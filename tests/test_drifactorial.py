@@ -9,8 +9,8 @@ from datetime import date, datetime, time, timedelta
 from io import StringIO
 from typing import List, Optional
 
-import pydantic
 import pytest
+from pydantic import TypeAdapter
 from pytest import CaptureFixture
 from pytest_mock import MockerFixture
 
@@ -30,14 +30,14 @@ def test_daterange():
     # case invalid range
     start = date(2021, 2, 1)
     end = date(2021, 1, 1)
-    dates = [x for x in drifactorial.daterange(start, end)]
+    dates = list(drifactorial.daterange(start, end))
     assert len(dates) == 0
     # case include end
     end = date(2021, 2, 28)
-    dates = [x for x in drifactorial.daterange(start, end)]
+    dates = list(drifactorial.daterange(start, end))
     assert len(dates) == 28
     # case exclude end
-    dates = [x for x in drifactorial.daterange(start, end, include_end=False)]
+    dates = list(drifactorial.daterange(start, end, include_end=False))
     assert len(dates) == 27
 
 
@@ -53,7 +53,7 @@ def test_get_holidays(mocker: MockerFixture):
 
     # prep parsing
     date_fields = [
-        name for name, field in Holiday.__fields__.items() if field.type_ is date
+        name for name, field in Holiday.model_fields.items() if field.annotation is date
     ]
 
     # make assertions
@@ -67,7 +67,7 @@ def test_get_holidays(mocker: MockerFixture):
         else:
             assert getattr(holidays[0], field) == value
 
-    fake_date = pydantic.parse_obj_as(date, fake_response_holidays[0]["date"])
+    fake_date = TypeAdapter(date).validate_python(fake_response_holidays[0]["date"])
     # test filter start
     mocker.patch(
         "drifactorial.request.urlopen",
@@ -96,9 +96,7 @@ def test_get_holidays(mocker: MockerFixture):
     assert len(holidays) == 0
 
 
-def test_get_leaves(
-    mocker: MockerFixture,
-):
+def test_get_leaves(mocker: MockerFixture):
     """Assert get leaves method."""
     fake_response_leaves = [utils.random_schema(Leave)]
     mocker.patch(
@@ -110,7 +108,7 @@ def test_get_leaves(
 
     # prep parsing
     date_fields = [
-        name for name, field in Leave.__fields__.items() if field.type_ is date
+        name for name, field in Leave.model_fields.items() if field.annotation is date
     ]
 
     # make assertions
@@ -140,7 +138,7 @@ def test_get_leaves(
     assert len(leaves) == 0
 
     # test filter start
-    fake_date = pydantic.parse_obj_as(date, fake_response_leaves[0]["finish_on"])
+    fake_date = TypeAdapter(date).validate_python(fake_response_leaves[0]["finish_on"])
     mocker.patch(
         "drifactorial.request.urlopen",
         return_value=StringIO(json.dumps(fake_response_leaves)),
@@ -155,7 +153,7 @@ def test_get_leaves(
     assert len(leaves) == 1
 
     # test filter end
-    fake_date = pydantic.parse_obj_as(date, fake_response_leaves[0]["start_on"])
+    fake_date = TypeAdapter(date).validate_python(fake_response_leaves[0]["start_on"])
     mocker.patch(
         "drifactorial.request.urlopen",
         return_value=StringIO(json.dumps(fake_response_leaves)),
@@ -191,7 +189,9 @@ def test_get_employees(mocker: MockerFixture, hiring_cents: int, hiring_type: st
     )
     fake_response_employees[0].update(hiring=hiring_parsed)
     date_fields = [
-        name for name, field in Employee.__fields__.items() if field.type_ is date
+        name
+        for name, field in Employee.model_fields.items()
+        if field.annotation is date
     ]
 
     # make assertions
@@ -224,10 +224,10 @@ def test_get_shifts(
 
     # prep parsing
     date_fields = [
-        name for name, field in Shift.__fields__.items() if field.type_ is date
+        name for name, field in Shift.model_fields.items() if field.annotation is date
     ]
     time_fields = [
-        name for name, field in Shift.__fields__.items() if field.type_ is time
+        name for name, field in Shift.model_fields.items() if field.annotation is time
     ]
 
     # make assertions
@@ -300,7 +300,9 @@ def test_get_single_employee(
     )
     fake_response_single_employee.update(hiring=hiring_parsed)
     date_fields = [
-        name for name, field in Employee.__fields__.items() if field.type_ is date
+        name
+        for name, field in Employee.model_fields.items()
+        if field.annotation is date
     ]
 
     # make assertions
@@ -328,7 +330,7 @@ def test_clock_in(mocker: MockerFixture):
 
     # prep parsing
     time_fields = [
-        name for name, field in Shift.__fields__.items() if field.type_ is time
+        name for name, field in Shift.model_fields.items() if field.annotation is time
     ]
 
     # make assertions
@@ -356,7 +358,7 @@ def test_clock_out(mocker: MockerFixture):
 
     # prep parsing
     time_fields = [
-        name for name, field in Shift.__fields__.items() if field.type_ is time
+        name for name, field in Shift.model_fields.items() if field.annotation is time
     ]
 
     # make assertions
@@ -437,9 +439,10 @@ def test_refresh_access_token(mocker: MockerFixture):
 def test_get_daysoff(mocker: MockerFixture):
     """Assert get daysoff method."""
     # test filter holidays on employee id successful
-    employee = pydantic.parse_obj_as(Employee, utils.random_employee())
+    employee = TypeAdapter(Employee).validate_python(utils.random_employee())
     holidays = [
-        pydantic.parse_obj_as(Holiday, utils.random_schema(Holiday)) for i in range(3)
+        TypeAdapter(Holiday).validate_python(utils.random_schema(Holiday))
+        for i in range(3)
     ]
     holidays[0].half_day = None
     holidays[1].half_day = drifactorial.HALF_DAY_AM
@@ -534,7 +537,7 @@ def test_get_daysoff(mocker: MockerFixture):
     # using the same employee
     holidays_empty: List = []
     leaves = [
-        pydantic.parse_obj_as(Leave, utils.random_schema(Leave)) for i in range(3)
+        TypeAdapter(Leave).validate_python(utils.random_schema(Leave)) for _ in range(3)
     ]
     leaves[0].half_day = None
     leaves[1].half_day = drifactorial.HALF_DAY_AM

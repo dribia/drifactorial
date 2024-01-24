@@ -100,7 +100,8 @@ def random_selector(random_type):
 def random_schema(schema: Any) -> Dict[str, Any]:
     """Generate a random schema object."""
     data = {
-        name: random_selector(field.type_) for name, field in schema.__fields__.items()
+        name: random_selector(field.annotation)
+        for name, field in schema.model_fields.items()
     }
     return data
 
@@ -110,9 +111,9 @@ def random_employee(
 ) -> Dict[str, Any]:
     """Generate a random Employee object."""
     data = random_schema(Employee)
-    for name, field in Employee.__fields__.items():
-        if field.is_complex():
-            data[name] = (random_selector(field.type_),)
+    for name in Employee.model_fields.keys():
+        if name in ["company_holiday_ids", "team_ids"]:
+            data[name] = (random_int(k_max=5),)
     hiring_raw = {
         "base_compensation_amount_in_cents": hiring_cents,
         "base_compensation_type": hiring_type,
