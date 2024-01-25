@@ -9,8 +9,8 @@ from datetime import date, datetime, timedelta
 from typing import Any, Dict, Generator, List, Optional, Tuple, Union
 from urllib import parse, request
 
-import pydantic
 from dateutil.parser import parse as du_parse  # type: ignore
+from pydantic import TypeAdapter
 
 from drifactorial.schemas import Account, Employee, Holiday, Leave, Shift, Token
 
@@ -130,7 +130,7 @@ class Factorial:
             List of Holiday objects.
         """
         response = self._get(endpoint=URL_HOLIDAYS)
-        parsed = [pydantic.parse_obj_as(Holiday, x) for x in response]
+        parsed = [TypeAdapter(Holiday).validate_python(x) for x in response]
         if start is not None:
             parsed = [x for x in parsed if x.date >= _parse_date(start)]
         if end is not None:
@@ -140,12 +140,12 @@ class Factorial:
     def get_employees(self) -> List[Employee]:
         """Get employees information."""
         response = self._get(endpoint=URL_EMPLOYEES)
-        return [pydantic.parse_obj_as(Employee, x) for x in response]
+        return [TypeAdapter(Employee).validate_python(x) for x in response]
 
     def get_single_employee(self, *, employee_id: int) -> Employee:
         """Get single employee information."""
         response = self._get(endpoint=f"{URL_EMPLOYEES}/{employee_id}")
-        return pydantic.parse_obj_as(Employee, response)
+        return TypeAdapter(Employee).validate_python(response)
 
     def get_shifts(
         self,
@@ -172,7 +172,7 @@ class Factorial:
         if year is not None and month is not None:
             params = {"year": f"{year}", "month": f"{month}"}
         response = self._get(endpoint=URL_SHIFTS, params=params)
-        parsed = [pydantic.parse_obj_as(Shift, x) for x in response]
+        parsed = [TypeAdapter(Shift).validate_python(x) for x in response]
         if employee_id is not None:
             parsed = [x for x in parsed if x.employee_id == employee_id]
         return parsed
@@ -195,7 +195,7 @@ class Factorial:
             List of Leaves objects.
         """
         response = self._get(endpoint=URL_LEAVES)
-        parsed = [pydantic.parse_obj_as(Leave, x) for x in response]
+        parsed = [TypeAdapter(Leave).validate_python(x) for x in response]
         if start is not None:
             parsed = [x for x in parsed if x.finish_on >= _parse_date(start)]
         if end is not None:
@@ -292,19 +292,19 @@ class Factorial:
     def get_account(self) -> Account:
         """Get account information."""
         response = self._get(endpoint=URL_ACCOUNT)
-        return pydantic.parse_obj_as(Account, response)
+        return TypeAdapter(Account).validate_python(response)
 
     def clock_in(self, *, now: datetime, employee_id: int) -> Shift:
         """Post clock-in time."""
         payload = {"now": f"{now.isoformat()}", "employee_id": f"{employee_id}"}
         response = self._post(endpoint=f"{URL_SHIFTS}/{URL_CLOCK_IN}", payload=payload)
-        return pydantic.parse_obj_as(Shift, response)
+        return TypeAdapter(Shift).validate_python(response)
 
     def clock_out(self, *, now: datetime, employee_id: int) -> Shift:
         """Post clock-out time."""
         payload = {"now": f"{now.isoformat()}", "employee_id": f"{employee_id}"}
         response = self._post(endpoint=f"{URL_SHIFTS}/{URL_CLOCK_OUT}", payload=payload)
-        return pydantic.parse_obj_as(Shift, response)
+        return TypeAdapter(Shift).validate_python(response)
 
     @staticmethod
     def obtain_authorization_link(
@@ -372,7 +372,7 @@ class Factorial:
             "grant_type": "authorization_code",
         }
         response = self._post_token(data=data)
-        token = pydantic.parse_obj_as(Token, response)
+        token = TypeAdapter(Token).validate_python(response)
         self.access_token = token.access_token
         return token
 
@@ -387,6 +387,6 @@ class Factorial:
             "grant_type": "refresh_token",
         }
         response = self._post_token(data=data)
-        token = pydantic.parse_obj_as(Token, response)
+        token = TypeAdapter(Token).validate_python(response)
         self.access_token = token.access_token
         return token
