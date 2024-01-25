@@ -73,7 +73,7 @@ class Employee(BaseModel):
     social_security_number: Optional[str]
     start_date: Optional[date]
     state: Optional[str]
-    terminated_on: Optional[date]
+    terminated_on: Optional[date] = None
 
 
 class Shift(BaseModel):
